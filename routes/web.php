@@ -5,8 +5,23 @@ use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Route;
 
 // Halaman HOME (index.php lama)
-Route::get('/', [BukuController::class, 'index']);
+Route::get('/', [BukuController::class, 'index'])->name('buku.index');
 
-// Halaman Admin dan Pengadaan (Perlu ditambahkan setelah membuat metodenya di Controller)
-// Route::get('/admin', [BukuController::class, 'admin']);
-// Route::get('/pengadaan', [BukuController::class, 'pengadaan']);
+// Halaman Pengadaan (pengadaan.php lama)
+Route::get('/pengadaan', [BukuController::class, 'pengadaan'])->name('buku.pengadaan');
+
+// Rute ADMIN / CRUD (Resource Routing)
+// Note: Kita menggunakan metode get/post custom karena PK adalah string
+Route::get('/admin', [BukuController::class, 'admin'])->name('buku.admin'); // Dashboard utama
+
+// CREATE
+Route::get('/admin/create', [BukuController::class, 'create'])->name('buku.create');
+Route::post('/admin', [BukuController::class, 'store'])->name('buku.store');
+
+// UPDATE
+// {buku} adalah parameter yang akan digunakan Eloquent (Buku $buku)
+Route::get('/admin/{buku}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+Route::put('/admin/{buku}', [BukuController::class, 'update'])->name('buku.update');
+
+// DELETE
+Route::delete('/admin/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
