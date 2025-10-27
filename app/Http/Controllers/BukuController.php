@@ -99,6 +99,10 @@ class BukuController extends Controller
     // --------------------------------------------------------
     // 7. UPDATE (Simpan Perubahan)
     // --------------------------------------------------------
+
+    // --------------------------------------------------------
+    // 7. UPDATE (Simpan Perubahan)
+    // --------------------------------------------------------
     public function update(Request $request, Buku $buku)
     {
         // [Implementasi Validasi Form Laravel di sini]

@@ -15,12 +15,10 @@ Route::get('/pengadaan', [BukuController::class, 'pengadaan'])->name('buku.penga
 Route::get('/admin', [BukuController::class, 'admin'])->name('buku.admin'); // Dashboard utama
 
 // CREATE
-Route::get('/admin/create', [BukuController::class, 'create'])->name('buku.create');
 Route::post('/admin', [BukuController::class, 'store'])->name('buku.store');
 
 // UPDATE
 // {buku} adalah parameter yang akan digunakan Eloquent (Buku $buku)
-Route::get('/admin/{buku}/edit', [BukuController::class, 'edit'])->name('buku.edit');
 Route::put('/admin/{buku}', [BukuController::class, 'update'])->name('buku.update');
 
 // DELETE
