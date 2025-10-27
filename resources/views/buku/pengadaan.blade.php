@@ -1,4 +1,3 @@
-{{-- resources/views/buku/pengadaan.blade.php --}}
 @extends('layouts.app')
 
 @section('content')

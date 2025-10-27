@@ -1,11 +1,10 @@
-{{-- resources/views/buku/admin.blade.php (Dashboard dan Tabel) --}}
 @extends('layouts.app')
 
 @section('content')
 <div class="container-fluid" style="margin-top: 2rem;">
 <h2>Kelola Data Buku</h2>
 
-{{-- Tambahkan notifikasi Laravel di sini --}}
+{{-- Notifikasi Status --}}
 @if (session('status'))
     @php
         $status = session('status');
@@ -17,7 +16,6 @@
         elseif ($status === 'error_duplicate_id') {$msg = 'Gagal: ID Buku sudah terdaftar. Gunakan ID yang berbeda.'; $type = 'danger';}
         else {$msg = 'Terjadi kesalahan.'; $type = 'danger';}
     @endphp
-    {{-- Render notifikasi custom dari kode PHP murni lama --}}
     <div class="notification {{ $type }} show"><span class="icon">✔</span><span class="msg">{{ $msg }}</span><button type="button" class="close-btn">&times;</button></div>
 @endif
 
@@ -25,7 +23,7 @@
     <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
 </p>
 
-{{-- Tabel Buku (READ) --}}
+{{-- READ --}}
 <div class="card">
 <table class="table table-striped table-hover">
     <thead>
@@ -49,12 +47,12 @@
         <td>{{ $buku->stok }}</td>
         <td>{{ $buku->penerbit->nama_penerbit }}</td>
         <td>
-            {{-- Tombol Edit --}}
+            {{-- Edit --}}
             <a href="{{ route('buku.edit', $buku->id_buku) }}" title="Edit" class="btn btn-sm btn-outline-primary" aria-label="Edit">
                 <i class="fas fa-edit"></i>
             </a>
 
-            {{-- Tombol Delete (menggunakan form method DELETE) --}}
+            {{-- Delete --}}
             <form action="{{ route('buku.destroy', $buku->id_buku) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus {{ $buku->nama_buku }}? Aksi ini tidak dapat dikembalikan.');">
                 @csrf
                 @method('DELETE')

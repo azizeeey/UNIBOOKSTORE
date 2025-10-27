@@ -1,4 +1,3 @@
-{{-- resources/views/buku/edit.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
@@ -6,7 +5,7 @@
 <h2>Edit Buku: {{ $buku->nama_buku }}</h2>
 
 <div class="card" style="max-width:720px;">
-{{-- Menggunakan method PUT untuk UPDATE di Laravel --}}
+
 <form method="POST" action="{{ route('buku.update', $buku->id_buku) }}">
     @csrf
     @method('PUT')

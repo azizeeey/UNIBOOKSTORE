@@ -14,7 +14,6 @@ main {
 }
 
 
-/* Custom styles for UNI Bookstore */
 .header-container {
     padding: 1rem 2rem;
     display: flex;
@@ -26,33 +25,32 @@ main {
 .logo {
     text-decoration: none;
     color: #333;
-    transition: transform 0.2s ease-in-out; /* Add transition for smooth effect */
+    transition: transform 0.2s ease-in-out;
 }
 
 .logo:hover {
-    transform: scale(1.05); /* Enlarge the logo slightly on hover */
+    transform: scale(1.05);
 }
 
 nav a {
     margin-left: 1rem;
     text-decoration: none;
     color: #666;
-    position: relative; /* Needed for the underline pseudo-element */
-    transition: color 0.2s ease-in-out; /* Smooth color transition */
+    position: relative;
+    transition: color 0.2s ease-in-out;
 }
 
 nav a:hover, nav a.active {
     color: #333;
 }
 
-/* Add a pseudo-element for the underline effect */
 nav a::after {
     content: '';
     position: absolute;
     width: 100%;
     transform: scaleX(0);
     height: 2px;
-    bottom: -5px; /* Position the underline below the text */
+    bottom: -5px;
     left: 0;
     background-color: #333;
     transform-origin: bottom right;

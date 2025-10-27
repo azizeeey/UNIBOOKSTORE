@@ -1,4 +1,3 @@
-{{-- resources/views/buku/create.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
@@ -7,7 +6,7 @@
 
 <div class="card" style="max-width:720px;">
 <form method="POST" action="{{ route('buku.store') }}">
-    @csrf {{-- Wajib ada untuk Laravel --}}
+    @csrf
 
     @if (session('status') === 'error_duplicate_id')
         <p style="color:red;">Gagal: ID Buku sudah terdaftar. Gunakan ID yang berbeda.</p>
