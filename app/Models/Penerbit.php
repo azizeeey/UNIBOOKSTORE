@@ -17,4 +17,9 @@ class Penerbit extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     protected $fillable = ['id_penerbit', 'nama_penerbit', 'alamat', 'kota', 'telepon'];
+
+    public function buku()
+    {
+        return $this->hasMany(Buku::class, 'id_penerbit', 'id_penerbit');
+    }
 }

@@ -33,7 +33,8 @@ class BukuController extends Controller
     {
         // Ambil data buku dengan relasi penerbit untuk tampilan tabel
         $bukus = Buku::with('penerbit')->get();
-        return view('buku.admin', compact('bukus'));
+        $penerbits = Penerbit::all();
+        return view('buku.admin', compact('bukus', 'penerbits'));
     }
 
     // --------------------------------------------------------

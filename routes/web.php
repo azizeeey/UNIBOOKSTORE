@@ -25,3 +25,9 @@ Route::put('/admin/{buku}', [BukuController::class, 'update'])->name('buku.updat
 
 // DELETE
 Route::delete('/admin/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
+
+// PENERBIT CRUD
+Route::post('/admin/penerbit', [PenerbitController::class, 'store'])->name('penerbit.store');
+Route::get('/admin/penerbit/{penerbit}/edit', [PenerbitController::class, 'edit'])->name('penerbit.edit');
+Route::put('/admin/penerbit/{penerbit}', [PenerbitController::class, 'update'])->name('penerbit.update');
+Route::delete('/admin/penerbit/{penerbit}', [PenerbitController::class, 'destroy'])->name('penerbit.destroy');
