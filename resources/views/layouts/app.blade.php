@@ -17,9 +17,9 @@
             {{-- Menggunakan route() untuk link yang benar --}}
             <a href="{{ url('/') }}" class="logo"><h1>📚 UNI Bookstore</h1></a>
             <nav>
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ url('/admin') }}">Admin</a>
-                <a href="{{ url('/pengadaan') }}">Pengadaan</a>
+                <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
+                <a href="{{ url('/admin') }}" class="{{ Request::is('admin*') ? 'active' : '' }}">Admin</a>
+                <a href="{{ url('/pengadaan') }}" class="{{ Request::is('pengadaan') ? 'active' : '' }}">Pengadaan</a>
             </nav>
         </div>
     </header>

@@ -26,16 +26,42 @@ main {
 .logo {
     text-decoration: none;
     color: #333;
+    transition: transform 0.2s ease-in-out; /* Add transition for smooth effect */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Enlarge the logo slightly on hover */
 }
 
 nav a {
     margin-left: 1rem;
     text-decoration: none;
     color: #666;
+    position: relative; /* Needed for the underline pseudo-element */
+    transition: color 0.2s ease-in-out; /* Smooth color transition */
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
     color: #333;
+}
+
+/* Add a pseudo-element for the underline effect */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px; /* Position the underline below the text */
+    left: 0;
+    background-color: #333;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+nav a:hover::after, nav a.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 footer {
