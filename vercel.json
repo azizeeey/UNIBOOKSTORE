@@ -23,7 +23,7 @@
         }
     ],
     "public": true,
-    "buildCommand": "composer install --no-dev && npm install && npm run build",
+    "buildCommand": "npm install && npm run build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
