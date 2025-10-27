@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid" style="margin-top: 2rem;">
-<h2>Edit Buku: {{ $buku->nama_buku }}</h2>
+<h2 class="text-center">Edit Buku: {{ $buku->nama_buku }}</h2>
 
 <div class="card" style="max-width:720px; margin: 0 auto; padding: 1rem; margin-top: 2rem;">
 

@@ -1,11 +1,10 @@
-{{-- resources/views/layouts/app.blade.php --}}
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNI Bookstore</title>
-    {{-- CDN Bootstrap & Font Awesome dari header.php lama --}}
+    {{-- CDN Bootstrap & Font Awesome --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     {{-- CSS Kustom --}}
@@ -14,7 +13,7 @@
 <body>
     <header>
         <div class="header-container">
-            {{-- Menggunakan route() untuk link yang benar --}}
+            {{-- Menggunakan route() --}}
             <a href="{{ url('/') }}" class="logo"><h1>📚 UNI Bookstore</h1></a>
             <nav>
                 <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
@@ -26,7 +25,7 @@
 
     <main>
         <div class="container">
-            @yield('content') {{-- Konten halaman spesifik (index/admin/pengadaan) masuk di sini --}}
+            @yield('content')
         </div>
     </main>
 
