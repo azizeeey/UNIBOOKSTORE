@@ -1,0 +1,46 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+/* Custom styles for UNI Bookstore */
+.header-container {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.logo {
+    text-decoration: none;
+    color: #333;
+}
+
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #666;
+}
+
+nav a:hover {
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    flex-shrink: 0;
+}
