@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container-fluid" style="margin-top: 2rem;">
 <h2>Edit Buku: {{ $buku->nama_buku }}</h2>
 
-<div class="card" style="max-width:720px;">
+<div class="card" style="max-width:720px; margin: 0 auto; padding: 1rem; margin-top: 2rem;">
 
 <form method="POST" action="{{ route('buku.update', $buku->id_buku) }}">
     @csrf
@@ -42,5 +42,5 @@
     </div>
 </form>
 </div>
-
+</div>
 @endsection
