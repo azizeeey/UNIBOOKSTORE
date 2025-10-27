@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container-fluid" style="margin-top: 2rem;">
 <h2>Kelola Data Buku</h2>
 
 {{-- Tambahkan notifikasi Laravel di sini --}}
@@ -68,5 +68,5 @@
     </tbody>
 </table>
 </div>
-
+</div>
 @endsection

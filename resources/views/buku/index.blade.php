@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container-fluid" style="margin-top: 2rem;">
 <h2>Daftar Buku</h2>
 
 {{-- Form Pencarian --}}
@@ -33,5 +33,5 @@
     </tbody>
 </table>
 </div>
-
+</div>
 @endsection

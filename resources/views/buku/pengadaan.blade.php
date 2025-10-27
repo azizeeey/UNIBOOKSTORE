@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container-fluid" style="margin-top: 2rem;">
 <h2>Laporan Kebutuhan Buku</h2>
 <p>Berikut daftar buku dengan stok paling sedikit (<= {{ $stok_limit }}):</p>
 
@@ -26,5 +26,5 @@
     </tbody>
 </table>
 </div>
-
+</div>
 @endsection
