@@ -5,11 +5,25 @@
         "api/index.php": { "runtime": "vercel-php@0.6.2" }
     },
     "routes": [
-        { "src": "/build/(.*)", "dest": "/public/build/" },
-        { "src": "/(.*)", "dest": "/api/index.php" }
+        {
+            "src": "/assets/(.*)",
+            "dest": "/public/assets/$1"
+        },
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/public/favicon.ico"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
     ],
     "public": true,
-    "buildCommand": "vite build",
+    "buildCommand": "composer install --no-dev && npm install && npm run build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
