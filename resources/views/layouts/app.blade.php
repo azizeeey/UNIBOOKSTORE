@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     {{-- CSS Kustom --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <header>
@@ -35,7 +35,7 @@
     {{-- Bootstrap JS Bundle --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- JS Kustom --}}
-    <script src="{{ asset('assets/js/script.js') }}" defer></script>
+    <script src="/assets/js/script.js" defer></script>
 </body>
 </html>
 <!--
