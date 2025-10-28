@@ -44,11 +44,10 @@ class BukuController extends Controller
 
     public function pengadaan()
     {
-        // Since the user did not provide logic for this, I'll return the view.
-        // I'll assume the view needs 'bukus' based on the other pages.
         try {
-            $bukus = Buku::where('stok', '<', 5)->get(); // Example logic: find books with low stock
-            return view('pengadaan', compact('bukus'));
+            $stok_limit = 15; // Define the stock limit
+            $bukus = Buku::with('penerbit')->where('stok', '<=', $stok_limit)->get();
+            return view('pengadaan', compact('bukus', 'stok_limit'));
         } catch (QueryException $e) {
             Log::error("Database Connection Failed in pengadaan: " . $e->getMessage());
             return redirect('/')->with('status', 'error_db_connect')->with('db_error_message', "Gagal memuat data pengadaan: Cek koneksi database Anda.");
