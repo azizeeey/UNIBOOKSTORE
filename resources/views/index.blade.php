@@ -14,23 +14,25 @@
 
 {{-- Tabel Data --}}
 <div class="card">
-<table class="table table-striped table-hover">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
 
-    <tbody>
-    @foreach ($bukus as $buku)
-        <tr>
-            <td>{{ $buku->id_buku }}</td>
-            <td>{{ $buku->kategori }}</td>
-            <td>{{ $buku->nama_buku }}</td>
+            <tbody>
+            @foreach ($bukus as $buku)
+                <tr>
+                    <td>{{ $buku->id_buku }}</td>
+                    <td>{{ $buku->kategori }}</td>
+                    <td>{{ $buku->nama_buku }}</td>
 
-            <td>Rp{{ number_format($buku->harga, 0, ',', '.') }}</td>
-            <td>{{ $buku->stok }}</td>
+                    <td>Rp{{ number_format($buku->harga, 0, ',', '.') }}</td>
+                    <td>{{ $buku->stok }}</td>
 
-            <td>{{ $buku->penerbit->nama_penerbit }}</td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+                    <td>{{ $buku->penerbit->nama_penerbit }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 @endsection
