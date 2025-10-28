@@ -27,8 +27,6 @@ class PenerbitController extends Controller
 
     public function edit(Penerbit $penerbit)
     {
-        // This will be handled by a modal in the admin view, so we pass the data there.
-        // However, if a separate edit page is needed, this is the place.
         return redirect()->route('buku.admin')->with('edit_penerbit', $penerbit);
     }
 
@@ -37,18 +35,17 @@ class PenerbitController extends Controller
         $request->validate([
             'nama_penerbit' => 'required',
         ]);
-        
+
         $penerbit->update($request->all());
         return redirect()->route('buku.admin')->with('status', 'success_update_penerbit');
     }
 
     public function destroy(Penerbit $penerbit)
     {
-        // Add check if publisher has books associated with it
         if ($penerbit->buku()->exists()) {
             return redirect()->route('buku.admin')->with('status', 'error_delete_penerbit_has_books');
         }
-        
+
         $penerbit->delete();
         return redirect()->route('buku.admin')->with('status', 'success_delete_penerbit');
     }
