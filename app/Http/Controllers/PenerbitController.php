@@ -10,7 +10,7 @@ class PenerbitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_penerbit' => 'required|unique:penerbit,id_penerbit',
+            'id_penerbit' => 'required',
             'nama_penerbit' => 'required',
         ]);
 

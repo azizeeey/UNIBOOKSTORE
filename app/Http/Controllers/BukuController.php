@@ -11,7 +11,7 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_buku' => 'required|unique:buku,id_buku',
+            'id_buku' => 'required',
             'nama_buku' => 'required',
         ]);
 
@@ -38,7 +38,7 @@ class BukuController extends Controller
         ]);
 
         $buku->update($request->all());
-        return redirect()->route('buku.admin')->with('status', 'success_update_buku');
+        return redirect()->route('buku.admin')->with('status', 'success_update');
     }
 
     public function destroy(Buku $buku)

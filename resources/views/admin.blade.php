@@ -4,24 +4,135 @@
 <div class="container-fluid" style="margin-top: 2rem;">
 <h2>Pengelolaan Data</h2>
 
+<style>
+    .popup-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        width: 350px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1rem;
+        overflow: hidden;
+    }
+    .popup-notification.show {
+        display: block;
+        animation: slideIn 0.5s forwards;
+    }
+    .popup-notification .notification-header {
+        padding: 10px 15px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+    }
+    .popup-notification .notification-body {
+        padding: 15px;
+        background-color: #fff;
+        color: #333;
+    }
+    .popup-notification.success .notification-header {
+        background-color: #28a745;
+    }
+    .popup-notification.danger .notification-header {
+        background-color: #dc3545;
+    }
+    .popup-notification .close-btn {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        line-height: 1;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    .popup-notification .progress-bar {
+        height: 4px;
+        width: 100%;
+        background-color: rgba(0,0,0,0.2);
+        animation: progressBar 5s linear forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes progressBar {
+        from { width: 100%; }
+        to { width: 0%; }
+    }
+</style>
+
 {{-- Notifikasi Status --}}
 @if (session('status'))
     @php
         $status = session('status');
         $msg = '';
         $type = 'success';
-        if ($status === 'success_add') {$msg = 'Buku berhasil ditambahkan.';}
-        elseif ($status === 'success_update') {$msg = 'Buku berhasil diupdate.';}
-        elseif ($status === 'success_delete') {$msg = 'Buku berhasil dihapus.'; $type = 'danger';}
-        elseif ($status === 'error_duplicate_id') {$msg = 'Gagal: ID Buku sudah terdaftar.'; $type = 'danger';}
-        elseif ($status === 'success_add_penerbit') {$msg = 'Penerbit berhasil ditambahkan.';}
-        elseif ($status === 'success_update_penerbit') {$msg = 'Penerbit berhasil diupdate.';}
-        elseif ($status === 'success_delete_penerbit') {$msg = 'Penerbit berhasil dihapus.'; $type = 'danger';}
-        elseif ($status === 'error_duplicate_id_penerbit') {$msg = 'Gagal: ID Penerbit sudah terdaftar.'; $type = 'danger';}
-        elseif ($status === 'error_delete_penerbit_has_books') {$msg = 'Gagal: Penerbit tidak dapat dihapus karena masih memiliki buku terkait.'; $type = 'danger';}
-        else {$msg = 'Terjadi kesalahan.'; $type = 'danger';}
+        $title = 'Berhasil!';
+
+        switch ($status) {
+            case 'success_add':
+                $msg = 'Buku berhasil ditambahkan.';
+                break;
+            case 'success_update':
+                $msg = 'Buku berhasil diupdate.';
+                break;
+            case 'success_add_penerbit':
+                $msg = 'Penerbit berhasil ditambahkan.';
+                break;
+            case 'success_update_penerbit':
+                $msg = 'Penerbit berhasil diupdate.';
+                break;
+            case 'success_delete':
+            case 'success_delete_penerbit':
+                $msg = ($status === 'success_delete') ? 'Buku berhasil dihapus.' : 'Penerbit berhasil dihapus.';
+                $type = 'danger';
+                $title = 'Terhapus!';
+                break;
+            case 'error_duplicate_id':
+                $msg = 'Gagal: ID Buku yang Anda masukkan sudah terdaftar.' ;
+                $type = 'danger';
+                $title = 'Gagal!';
+                break;
+            case 'error_duplicate_id_penerbit':
+                $msg = 'Gagal: ID Penerbit yang Anda masukkan sudah terdaftar.' ;
+                $type = 'danger';
+                $title = 'Gagal!';
+                break;
+            case 'error_delete_penerbit_has_books':
+                $msg = 'Gagal: Penerbit tidak dapat dihapus karena masih memiliki buku terkait.';
+                $type = 'danger';
+                $title = 'Gagal!';
+                break;
+            default:
+                $msg = 'Terjadi kesalahan.';
+                $type = 'danger';
+                $title = 'Error!';
+                break;
+        }
     @endphp
-    <div class="notification {{ $type }} show"><span class="icon">✔</span><span class="msg">{{ $msg }}</span><button type="button" class="close-btn">&times;</button></div>
+
+    <div id="popup-notification" class="popup-notification {{ $type }} show">
+        <div class="notification-header">
+            <span>{{ $title }}</span>
+            <button type="button" class="close-btn" onclick="closeNotification()">&times;</button>
+        </div>
+        <div class="notification-body">
+            {{ $msg }}
+        </div>
+        <div class="progress-bar"></div>
+    </div>
 @endif
 
 {{-- Navigasi Tab --}}
@@ -330,7 +441,22 @@
 
 @section('scripts')
 <script>
+    function closeNotification() {
+        const notification = document.getElementById('popup-notification');
+        if (notification) {
+            notification.style.display = 'none';
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+        const notification = document.getElementById('popup-notification');
+        if (notification) {
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                closeNotification();
+            }, 5000);
+        }
+
         // Tab persistence
         var triggerTabList = [].slice.call(document.querySelectorAll('#adminTab button'));
         triggerTabList.forEach(function(triggerEl) {
