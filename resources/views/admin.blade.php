@@ -49,17 +49,23 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Kategori</th>
                             <th>Nama Buku</th>
-                            <th>Penerbit</th>
-                            <th>Aksi</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Nama Penerbit</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($bukus as $buku)
                     <tr>
                         <td>{{ $buku->id_buku }}</td>
+                        <td>{{ $buku->kategori }}</td>
                         <td>{{ $buku->nama_buku }}</td>
-                        <td>{{ $buku->penerbit->nama_penerbit }}</td>
+                        <td>Rp{{ number_format($buku->harga, 0, ',', '.') }}</td>
+                        <td>{{ $buku->stok }}</td>
+                        <td>{{ optional($buku->penerbit)->nama_penerbit ?? '-' }}</td>
                         <td>
                             <button type="button" class="btn btn-sm btn-outline-primary edit-buku-btn"
                                     data-bs-toggle="modal" data-bs-target="#editBukuModal"
@@ -101,6 +107,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Nama Penerbit</th>
+                            <th>Alamat</th>
+                            <th>Kota</th>
+                            <th>Telepon</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -109,6 +118,9 @@
                     <tr>
                         <td>{{ $penerbit->id_penerbit }}</td>
                         <td>{{ $penerbit->nama_penerbit }}</td>
+                        <td>{{ $penerbit->alamat }}</td>
+                        <td>{{ $penerbit->kota }}</td>
+                        <td>{{ $penerbit->telepon }}</td>
                         <td>
                             <button type="button" class="btn btn-sm btn-outline-primary edit-penerbit-btn"
                                     data-bs-toggle="modal" data-bs-target="#editPenerbitModal"
@@ -353,8 +365,7 @@
             const button = event.relatedTarget;
             const id = button.getAttribute('data-id');
             const form = document.getElementById('editBukuForm');
-            let url = "{{ route('buku.update', ':id') }}";
-            url = url.replace(':id', id);
+            let url = "{{ url('/admin') }}" + '/' + id;
             form.action = url;
 
             form.querySelector('#edit_kategori').value = button.getAttribute('data-kategori');
@@ -371,8 +382,7 @@
             const button = event.relatedTarget;
             const id = button.getAttribute('data-id');
             const form = document.getElementById('editPenerbitForm');
-            let url = "{{ route('penerbit.update', ':id') }}";
-            url = url.replace(':id', id);
+            let url = "{{ url('/admin/penerbit') }}" + '/' + id;
             form.action = url;
 
             form.querySelector('#edit_nama_penerbit').value = button.getAttribute('data-nama');

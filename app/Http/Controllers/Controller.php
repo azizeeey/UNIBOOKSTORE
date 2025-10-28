@@ -18,7 +18,7 @@ abstract class Controller
             })
             ->get();
 
-        return view('buku.index', compact('bukus', 'search'));
+        return view('index', compact('bukus', 'search'));
     }
 
     //admin dashboard function bisa ditaruh di sini jika diperlukan
@@ -26,7 +26,7 @@ abstract class Controller
     {
         $bukus = Buku::with('penerbit')->get();
         $penerbits = Penerbit::all();
-        return view('buku.admin', compact('bukus', 'penerbits'));
+        return view('admin', compact('bukus', 'penerbits'));
     }
 
     //pengadaan function bisa ditaruh di sini jika diperlukan
@@ -38,6 +38,6 @@ abstract class Controller
             ->orderBy('stok', 'asc')
             ->get();
 
-        return view('buku.pengadaan', compact('bukus', 'stok_limit'));
+        return view('pengadaan', compact('bukus', 'stok_limit'));
     }
 }
