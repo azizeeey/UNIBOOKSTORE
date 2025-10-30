@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 abstract class Controller
 {
-    //home dan search function bisa ditaruh di sini jika diperlukan
     public function index(Request $request)
     {
         $search = $request->query('cari');
@@ -21,7 +20,6 @@ abstract class Controller
         return view('index', compact('bukus', 'search'));
     }
 
-    //admin dashboard function bisa ditaruh di sini jika diperlukan
     public function admin()
     {
         $bukus = Buku::with('penerbit')->get();
@@ -29,7 +27,6 @@ abstract class Controller
         return view('admin', compact('bukus', 'penerbits'));
     }
 
-    //pengadaan function bisa ditaruh di sini jika diperlukan
     public function pengadaan()
     {
         $stok_limit = 20;
