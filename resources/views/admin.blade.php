@@ -495,8 +495,8 @@
             const button = event.relatedTarget;
             const id = button.getAttribute('data-id');
             const form = document.getElementById('editBukuForm');
-            let url = "{{ route('buku.update', 'REPLACE_ID') }}";
-            url = url.replace('REPLACE_ID', id);
+            let url = "{{ route('buku.update', ['buku' => ':id']) }}";
+            url = url.replace(':id', id);
             form.action = url;
 
             form.querySelector('#edit_kategori').value = button.getAttribute('data-kategori');
@@ -513,8 +513,8 @@
             const button = event.relatedTarget;
             const id = button.getAttribute('data-id');
             const form = document.getElementById('editPenerbitForm');
-            let url = "{{ route('penerbit.update', 'REPLACE_ID') }}";
-            url = url.replace('REPLACE_ID', id);
+            let url = "{{ route('penerbit.update', ['penerbit' => ':id']) }}";
+            url = url.replace(':id', id);
             form.action = url;
 
             form.querySelector('#edit_nama_penerbit').value = button.getAttribute('data-nama');
